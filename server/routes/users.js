@@ -7,6 +7,7 @@ router.get('/', (req, res, next) => {
 });
 
 router.get('/:user', (req, res, next) => {
+  // yay integrated debugging!
   res.json({
     user: req.params.user
   });
