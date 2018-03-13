@@ -4,6 +4,9 @@
   "private": true,
   "scripts": {
     "start": "node ./server/bin/www",
+    "build:dev": "webpack --config=./webpack.dev.js --progress --colors",
+    "build:watch": "webpack --config=./webpack.dev.js --watch --progress --colors",
+    "build:prod": "webpack --config=./webpack.prod.js",
     "dev": "nodemon ./server/bin/www",
     "test": "",
     "test:server": "./node_modules/mocha/bin/mocha ./tests/server/**/*.js"
@@ -16,7 +19,8 @@
     "mongojs": "^2.5.0",
     "morgan": "~1.7.0",
     "pug": "~2.0.0-beta6",
-    "serve-favicon": "~2.3.0"
+    "serve-favicon": "~2.3.0",
+    "webpack-cli": "^2.0.11"
   },
   "devDependencies": {
     "karma": "^2.0.0",
