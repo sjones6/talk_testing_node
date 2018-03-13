@@ -1,10 +1,18 @@
-<h1>{{ name }}</h1>
+<section>
+    <h1>{{ name }}</h1>
+    <Input />
+</section>
 
 <script>
+import Input from './Input.html'
+
 export default {
+  components: {
+    Input
+  },
   data() {
     return {
-      name: "Hello, Solution Street!!"
+      name: "Hello, Solution Streetsss!!"
     }
   }
 }

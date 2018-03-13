@@ -1,16 +1,10 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET users listing. */
-router.get('/', (req, res, next) => {
-  res.send('respond with a resource');
-});
+const User = require('~/models/user.js');
+const controller = require('~/controllers/users')(User);
 
-router.get('/:user', (req, res, next) => {
-  // yay integrated debugging!
-  res.json({
-    user: req.params.user
-  });
-});
+router.get('/', controller.list);
+router.get('/:user', controller.get);
 
 module.exports = router;

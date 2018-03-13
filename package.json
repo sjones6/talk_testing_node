@@ -4,14 +4,18 @@
   "private": true,
   "scripts": {
     "start": "node ./server/bin/www",
-    "build:dev": "webpack --config=./webpack.dev.js --progress --colors",
-    "build:watch": "webpack --config=./webpack.dev.js --watch --progress --colors",
-    "build:prod": "webpack --config=./webpack.prod.js",
-    "dev": "nodemon ./server/bin/www",
-    "test": "",
-    "test:server": "./node_modules/mocha/bin/mocha ./tests/server/**/*.js"
+    "watch": "nodemon ./server/bin/www",
+    "dev": "webpack --config=./webpack.dev.js --progress --colors",
+    "hot": "node ./dev-server.js",
+    "prod": "webpack --config=./webpack.prod.js",
+    "test": "npm run test:server_once && npm run test:client_once",
+    "test:server": "npm run test:server_once -- --watch",
+    "test:server_once": "./node_modules/mocha/bin/mocha ./tests/server/**/*.js",
+    "test:client": "karma start --config=./karma.conf.js",
+    "test:client_once": "npm run test:client -- --single-run"
   },
   "dependencies": {
+    "~": "file:./server",
     "body-parser": "~1.15.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.2.0",
@@ -24,12 +28,18 @@
   },
   "devDependencies": {
     "karma": "^2.0.0",
+    "karma-mocha": "^1.3.0",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-mocha-reporter": "^2.2.5",
+    "karma-webpack": "^2.0.13",
     "mocha": "^5.0.4",
     "nodemon": "^1.17.1",
     "supertest": "^3.0.0",
     "svelte": "^1.57.1",
     "svelte-loader": "^2.5.0",
     "webpack": "^4.1.1",
+    "webpack-dev-server": "^3.1.1",
+    "webpack-hot-middleware": "^2.21.2",
     "webpack-merge": "^4.1.2"
   }
 }
