@@ -1,20 +1,12 @@
-const User = function(props) {
-  this._props = Object.assign({
-    firstName: '',
-    lastName: '',
-    favoriteFood: ''
-  }, props);
-};
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost:27017/node_testing');
 
-User.create = function(props) {
-  const u = new User(props)
-  return u.save();
-};
+const UserSchema = new mongoose.Schema({
+  name: String,
+  favoriteFood: String
+});
 
-User.prototype.save = function() {
-  return new Promise((resolve, reject) => {
-    console.log(this._props);
-    resolve();
-  })
-};
+module.exports = mongoose.models.User || mongoose.model('User', UserSchema);
+
+
 

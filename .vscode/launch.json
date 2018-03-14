@@ -11,7 +11,7 @@
       "program": "${workspaceFolder}/node_modules/mocha/bin/_mocha",
       "console": "integratedTerminal",
       "args": [
-        "${workspaceFolder}/tests/server/**/*.js", "--watch"
+        "${workspaceFolder}/tests/server/**/*.js", "--watch", "--timeout=120000"
       ]
     }
   ]
