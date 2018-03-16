@@ -1,0 +1,32 @@
+<div>
+  <ul>
+      {{#each users as user}}
+        <li><User user='{{ user }}' /></li>
+      {{/each}}
+    </ul>
+</div>
+
+<script>
+import User from './User.html';
+
+export default {
+  components: {
+    User
+  },
+  data() {
+    return {
+      users: []
+    }
+  },
+  oncreate() {
+    this.store.observe('users', () => {
+      this.set({users: this.store.get('users')});
+    });
+  },
+  methods: {
+    delete(id) {
+      console.log(id);
+    }
+  }
+}
+</script>

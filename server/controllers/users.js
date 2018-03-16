@@ -30,7 +30,6 @@ module.exports = User => ({
     });
   },
   post(req, res) {
-    // validations ...
     const user = {
       name: req.body.name,
       favoriteFood: req.body.favoriteFood

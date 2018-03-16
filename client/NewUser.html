@@ -1,0 +1,48 @@
+<form on:submit="onsubmit(event)">
+    <input placeholder="name" bind:value=name />
+    <input placeholder="favorite food" bind:value=favoriteFood />
+    <button type="submit">Add User</button>
+</form>
+
+<script>
+import axios from 'axios';
+
+export default {
+  data() {
+    return {
+      name: "",
+      favoriteFood: ""
+    }
+  },
+  methods: {
+    onsubmit(event) {
+      event.preventDefault();
+      axios.post('/users', {
+        name: this.get('name'),
+        favoriteFood: this.get('favoriteFood')
+      })
+      .then(({data}) => {
+        this.fire('newuser', data.user);
+        this.set({
+          name: '',
+          favoriteFood: ''
+        });
+      })
+      .catch((err) => {
+        console.error(err);
+        alert('error creating user!');
+      });
+    }
+  }
+}
+</script>
+
+<style scoped>
+input {
+  display: block;
+  font-size: 20px;
+  line-height: 24px;
+  width: 50%;
+  margin: 5px;
+}
+</style>

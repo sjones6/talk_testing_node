@@ -1,0 +1,38 @@
+<div class="user">
+    <span>{{ user.name }}</span>
+    <span>{{ user.favoriteFood }} </span>
+    <button on:click="deleteUser()">Delete</button>
+</div>
+
+<script>
+import axios from 'axios';
+
+export default {
+  data() {
+    return {
+      user: {
+        _id: "",
+        name: "",
+        favoriteFood: ""
+      }
+    }
+  },
+  methods: {
+    deleteUser() {
+      var _id = this.get('user')._id;
+      axios.delete('/users/' + _id)
+      .then(() => this.store.removeUser(_id))
+      .catch(err => {
+        console.error(err);
+        alert('Unable to delete user');
+      });
+    }
+  }
+}
+</script>
+
+<style scoped>
+button {
+  border: 1px solid red;
+}
+</style>

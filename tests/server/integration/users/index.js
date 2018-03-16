@@ -1,7 +1,7 @@
 const assert = require('assert');
 const { join } = require('path');
 const request = require('supertest');
-const app = require(join(process.cwd(), 'server', 'app'));
+const app = require('app');
 
 const user = 'test';
 
@@ -24,7 +24,7 @@ describe('/users', () => {
           done();
         })
         .catch(done);
-    })
+    });
   });
 
   describe('put', () => {
@@ -84,7 +84,7 @@ describe('/users', () => {
   });
 
   describe('get all', () => {
-    it('should return the record as JSON', done => {
+    it('should return the records as JSON', done => {
       request(app)
         .get(`/users`)
         .expect('Content-Type', /json/)

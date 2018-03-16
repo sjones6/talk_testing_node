@@ -1,18 +1,29 @@
 <section>
-    <h1>{{ name }}</h1>
-    <Input />
+    <NewUser on:newuser="onNewUser(event)" />
+    <UserList />
 </section>
 
 <script>
-import Input from './Input.html'
+import axios from 'axios';
+import { push } from 'svelte-extras';
+import NewUser from './NewUser.html';
+import UserList from './UserList.html'
 
 export default {
   components: {
-    Input
+    NewUser,
+    UserList
   },
-  data() {
-    return {
-      name: "Hello, Solution Streetsss!!"
+  oncreate() {
+    axios.get('/users').then(({data}) => {
+      if (data && data.length) {
+        this.store.set({users: data});
+      }
+    });
+  },
+  methods: {
+    onNewUser(user) {
+      this.store.addUser(user);
     }
   }
 }
