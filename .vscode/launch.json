@@ -13,6 +13,16 @@
       "args": [
         "${workspaceFolder}/tests/server/**/*.js", "--watch", "--timeout=120000"
       ]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "test:server",
+      "program": "${workspaceFolder}/node_modules/mocha/bin/_mocha",
+      "console": "integratedTerminal",
+      "args": [
+        "${workspaceFolder}/tests/server/**/*.js", "--watch", "--timeout=120000"
+      ]
     }
   ]
 }

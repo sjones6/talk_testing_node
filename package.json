@@ -10,11 +10,13 @@
     "prod": "webpack --config=./webpack.prod.js",
     "test": "npm run test:server_once && npm run test:client_once",
     "test:server": "npm run test:server_once -- --watch --timeout 90000",
-    "test:server_once": "./node_modules/mocha/bin/mocha ./tests/server/**/*.js",
+    "test:server_once": "mocha ./tests/server/integration/**/*-test.js",
+    "unit:server": "NODE_ENV=testing mocha ./tests/server/unit/**/*-test.js",
     "test:client": "karma start --config=./karma.conf.js",
     "test:client_once": "npm run test:client -- --single-run"
   },
   "dependencies": {
+    "app": "file:./server",
     "body-parser": "~1.15.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.2.0",
@@ -23,6 +25,7 @@
     "morgan": "~1.7.0",
     "pug": "~2.0.0-beta6",
     "serve-favicon": "~2.3.0",
+    "sinon": "^4.4.6",
     "svelte-extras": "^1.6.0",
     "webpack-cli": "^2.0.11"
   },

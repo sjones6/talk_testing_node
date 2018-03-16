@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
-const User = require('~/models/user.js');
-const controller = require('~/controllers/users')(User);
+const { User } = require('app/models');
+const controller = require('app/controllers/users')(User);
 
 router.get('/', controller.list);
 router.post('/', controller.post);
